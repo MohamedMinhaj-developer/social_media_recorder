@@ -22,46 +22,52 @@ class ShowCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
-      child: Container(
-        height: fullRecordPackageHeight,
-        width: MediaQuery.of(context).size.width * 0.4,
-        color: counterBackGroundColor ?? Colors.grey.shade100,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(width: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    soundRecorderState.second.toString().padLeft(2, '0'),
-                    style: counterTextStyle ??
-                        const TextStyle(color: Colors.black),
-                  ),
-                  const SizedBox(width: 3),
-                  const Text(" : "),
-                  Text(
-                    soundRecorderState.minute.toString().padLeft(2, '0'),
-                    style: counterTextStyle ??
-                        const TextStyle(color: Colors.black),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 3),
-              AnimatedOpacity(
-                duration: const Duration(seconds: 1),
-                opacity: soundRecorderState.second % 2 == 0 ? 1 : 0,
-                child: const Icon(
-                  Icons.mic,
-                  color: Colors.red,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.4,
+        ),
+        child: Container(
+          height: fullRecordPackageHeight,
+          color: counterBackGroundColor ?? Colors.grey.shade100,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(width: 30),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      soundRecorderState.second.toString().padLeft(2, '0'),
+                      style: counterTextStyle ??
+                          const TextStyle(color: Colors.black),
+                    ),
+                    const SizedBox(width: 3),
+                    const Text(" : "),
+                    Text(
+                      soundRecorderState.minute.toString().padLeft(2, '0'),
+                      style: counterTextStyle ??
+                          const TextStyle(color: Colors.black),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(width: 10),
-            ],
+                const SizedBox(width: 3),
+                AnimatedOpacity(
+                  duration: const Duration(seconds: 1),
+                  opacity: soundRecorderState.second % 2 == 0 ? 1 : 0,
+                  child: const Icon(
+                    Icons.mic,
+                    color: Colors.red,
+                  ),
+                ),
+                const SizedBox(width: 10),
+              ],
+            ),
           ),
         ),
       ),
