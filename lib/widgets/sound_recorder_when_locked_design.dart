@@ -53,34 +53,37 @@ class SoundRecorderWhenLockedDesign extends StatelessWidget {
         },
         child: Row(
           children: [
-            InkWell(
-              onTap: () async {
-                soundRecordNotifier.isShow = false;
-                soundRecordNotifier.finishRecording();
-              },
-              child: Transform.scale(
-                scale: 1.2,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(600),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                    width: fullRecordPackageHeight,
-                    height: fullRecordPackageHeight,
-                    child: Container(
-                      color: recordIconWhenLockBackGroundColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: recordIconWhenLockedRecord ??
-                            sendButtonIcon ??
-                            Icon(
-                              Icons.send,
-                              textDirection: TextDirection.ltr,
-                              size: 28,
-                              color: (soundRecordNotifier.buttonPressed)
-                                  ? Colors.grey.shade200
-                                  : Colors.black,
-                            ),
+            Flexible(
+              fit: FlexFit.tight,
+              child: InkWell(
+                onTap: () async {
+                  soundRecordNotifier.isShow = false;
+                  soundRecordNotifier.finishRecording();
+                },
+                child: Transform.scale(
+                  scale: 1.2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(600),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                      width: fullRecordPackageHeight,
+                      height: fullRecordPackageHeight,
+                      child: Container(
+                        color: recordIconWhenLockBackGroundColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: recordIconWhenLockedRecord ??
+                              sendButtonIcon ??
+                              Icon(
+                                Icons.send,
+                                textDirection: TextDirection.ltr,
+                                size: 28,
+                                color: (soundRecordNotifier.buttonPressed)
+                                    ? Colors.grey.shade200
+                                    : Colors.black,
+                              ),
+                        ),
                       ),
                     ),
                   ),
